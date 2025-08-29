@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button, Input, Textarea, Select } from "../components/ui";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -11,12 +12,6 @@ export default function ContactPage() {
     message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,92 +31,53 @@ export default function ContactPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md p-8">
-          <div className="mb-6">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-              お名前 <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-light focus:border-transparent"
-            />
-          </div>
+          <Input
+            label="お名前"
+            required
+            value={formData.name}
+            onChange={(value) => setFormData({ ...formData, name: value })}
+          />
+          
+          <Input
+            label="メールアドレス"
+            type="email"
+            required
+            value={formData.email}
+            onChange={(value) => setFormData({ ...formData, email: value })}
+          />
+          
+          <Input
+            label="電話番号（任意）"
+            type="tel"
+            value={formData.phone}
+            onChange={(value) => setFormData({ ...formData, phone: value })}
+          />
+          
+          <Select
+            label="お問い合わせ種別"
+            required
+            options={[
+              { value: "pc-support", label: "パソコン・スマホサポート" },
+              { value: "web-development", label: "ホームページ制作" },
+              { value: "excel-automation", label: "Excel業務効率化" },
+              { value: "other", label: "その他" },
+            ]}
+            value={formData.category}
+            onChange={(value) => setFormData({ ...formData, category: value })}
+          />
+          
+          <Textarea
+            label="お問い合わせ内容"
+            required
+            rows={6}
+            placeholder="ご相談内容をお書きください"
+            value={formData.message}
+            onChange={(value) => setFormData({ ...formData, message: value })}
+          />
 
-          <div className="mb-6">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-              メールアドレス <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-light focus:border-transparent"
-            />
-          </div>
-
-          <div className="mb-6">
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-              電話番号（任意）
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-light focus:border-transparent"
-            />
-          </div>
-
-          <div className="mb-6">
-            <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
-              お問い合わせ種別 <span className="text-red-500">*</span>
-            </label>
-            <select
-              id="category"
-              name="category"
-              required
-              value={formData.category}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-light focus:border-transparent"
-            >
-              <option value="">選択してください</option>
-              <option value="pc-support">パソコン・スマホサポート</option>
-              <option value="web-development">ホームページ制作</option>
-              <option value="excel-automation">Excel業務効率化</option>
-              <option value="other">その他</option>
-            </select>
-          </div>
-
-          <div className="mb-6">
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-              お問い合わせ内容 <span className="text-red-500">*</span>
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows={6}
-              value={formData.message}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-light focus:border-transparent"
-              placeholder="ご相談内容をお書きください"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full px-6 py-3 bg-primary-light text-white rounded-lg font-medium hover:bg-blue-600 transition-colors"
-          >
+          <Button type="submit" className="w-full" size="lg">
             送信する
-          </button>
+          </Button>
         </form>
 
         <div className="mt-8 text-center text-gray-600">
