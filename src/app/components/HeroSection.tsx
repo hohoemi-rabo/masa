@@ -3,7 +3,7 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Button } from "./ui";
-import { FadeInUp, FadeInLeft, ScaleIn } from "./animations";
+import { motion } from "framer-motion";
 
 // 3Dコンポーネントを動的インポート（SSR無効化）
 const RubiksCube = dynamic(() => import("./RubiksCube"), {
@@ -46,69 +46,84 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Content */}
           <div className="text-center lg:text-left">
-            <FadeInLeft>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                テクノロジーで、
-                <br />
-                あなたの
-                <span className="text-primary dark:text-primary-dark">"困った"</span>
-                を解決します
-              </h1>
-            </FadeInLeft>
+            <motion.h1 
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              テクノロジーで、
+              <br />
+              あなたの
+              <span className="text-primary dark:text-primary-dark">"困った"</span>
+              を解決します
+            </motion.h1>
             
-            <FadeInLeft delay={0.1}>
-              <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-                パソコン・スマホサポートから、ホームページ制作、Excel業務効率化まで
-                <br className="hidden sm:block" />
-                AI時代の効率的なITソリューションを提供
-              </p>
-            </FadeInLeft>
+            <motion.p 
+              className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            >
+              パソコン・スマホサポートから、ホームページ制作、Excel業務効率化まで
+              <br className="hidden sm:block" />
+              AI時代の効率的なITソリューションを提供
+            </motion.p>
             
-            <FadeInUp delay={0.2}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link href="/contact">
-                  <Button size="lg" className="w-full sm:w-auto">
-                    お問い合わせ
-                  </Button>
-                </Link>
-                <Link href="/services">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                    サービスを見る
-                  </Button>
-                </Link>
-              </div>
-            </FadeInUp>
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            >
+              <Link href="/contact">
+                <Button size="lg" className="w-full sm:w-auto">
+                  お問い合わせ
+                </Button>
+              </Link>
+              <Link href="/services">
+                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                  サービスを見る
+                </Button>
+              </Link>
+            </motion.div>
             
             {/* Trust indicators */}
-            <FadeInUp delay={0.3}>
-              <div className="mt-12 pt-8 border-t border-border">
-                <p className="text-sm text-muted-foreground mb-4">信頼の実績</p>
-                <div className="flex flex-col sm:flex-row gap-6 text-center lg:text-left">
-                  <div>
-                    <div className="text-2xl font-bold text-primary dark:text-primary-dark">50+</div>
-                    <div className="text-sm text-muted-foreground">プロジェクト実績</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-primary dark:text-primary-dark">98%</div>
-                    <div className="text-sm text-muted-foreground">顧客満足度</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-primary dark:text-primary-dark">24h</div>
-                    <div className="text-sm text-muted-foreground">平均対応時間</div>
-                  </div>
+            <motion.div 
+              className="mt-12 pt-8 border-t border-border"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            >
+              <p className="text-sm text-muted-foreground mb-4">信頼の実績</p>
+              <div className="flex flex-col sm:flex-row gap-6 text-center lg:text-left">
+                <div>
+                  <div className="text-2xl font-bold text-primary dark:text-primary-dark">50+</div>
+                  <div className="text-sm text-muted-foreground">プロジェクト実績</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-primary dark:text-primary-dark">98%</div>
+                  <div className="text-sm text-muted-foreground">顧客満足度</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-primary dark:text-primary-dark">24h</div>
+                  <div className="text-sm text-muted-foreground">平均対応時間</div>
                 </div>
               </div>
-            </FadeInUp>
+            </motion.div>
           </div>
           
           {/* Right side - 3D Animation */}
-          <ScaleIn delay={0.4}>
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-                <RubiksCube />
-              </div>
+          <motion.div 
+            className="flex justify-center lg:justify-end"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+          >
+            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
+              <RubiksCube />
             </div>
-          </ScaleIn>
+          </motion.div>
         </div>
       </div>
       

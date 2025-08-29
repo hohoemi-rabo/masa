@@ -12,8 +12,8 @@ export default function Section({ children, className, id }: SectionProps) {
 export function SectionHeader({ title, subtitle, centered = true, className }: SectionHeaderProps) {
   return (
     <div className={cn(centered && "text-center", "mb-12", className)}>
-      <h2 className="text-3xl font-bold text-gray-900 mb-4">{title}</h2>
-      {subtitle && <p className="text-lg text-gray-600">{subtitle}</p>}
+      <h2 className="text-3xl font-bold text-foreground mb-4">{title}</h2>
+      {subtitle && <p className="text-lg text-muted-foreground">{subtitle}</p>}
     </div>
   );
 }

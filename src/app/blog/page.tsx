@@ -27,26 +27,26 @@ export default function BlogPage() {
     <div className="min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">ブログ</h1>
-          <p className="text-lg text-gray-600">
+          <h1 className="text-4xl font-bold text-foreground mb-4">ブログ</h1>
+          <p className="text-lg text-muted-foreground">
             技術情報やTips、事例などを発信しています
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto">
           {posts.map((post) => (
-            <article key={post.id} className="mb-8 pb-8 border-b border-gray-200 last:border-b-0">
+            <article key={post.id} className="mb-8 pb-8 border-b border-border last:border-b-0">
               <div className="flex items-center gap-4 mb-3">
-                <span className="text-sm text-gray-500">{post.date}</span>
-                <span className="text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded">
+                <span className="text-sm text-muted-foreground">{post.date}</span>
+                <span className="text-sm px-2 py-1 bg-primary/10 text-primary dark:bg-primary-dark/20 dark:text-primary-dark rounded">
                   {post.category}
                 </span>
               </div>
-              <h2 className="text-2xl font-semibold mb-3 hover:text-primary-light cursor-pointer">
+              <h2 className="text-2xl font-semibold text-foreground mb-3 hover:text-primary dark:hover:text-primary-dark cursor-pointer">
                 {post.title}
               </h2>
-              <p className="text-gray-600 mb-4">{post.excerpt}</p>
-              <button className="text-primary-light hover:underline">
+              <p className="text-muted-foreground mb-4">{post.excerpt}</p>
+              <button className="text-primary dark:text-primary-dark hover:underline">
                 続きを読む →
               </button>
             </article>
@@ -54,7 +54,7 @@ export default function BlogPage() {
         </div>
 
         <div className="text-center mt-12">
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             もっと記事を見る（準備中）
           </p>
         </div>

@@ -2,17 +2,17 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">プロフィール</h1>
+        <h1 className="text-4xl font-bold text-foreground mb-8">プロフィール</h1>
         
         <div className="prose max-w-none">
-          <div className="bg-white rounded-lg shadow-md p-8 mb-8">
-            <h2 className="text-2xl font-semibold mb-4">パソコン講師</h2>
-            <p className="text-gray-600 mb-6">
+          <div className="bg-card rounded-lg shadow-md p-8 mb-8">
+            <h2 className="text-2xl font-semibold text-foreground mb-4">パソコン講師</h2>
+            <p className="text-muted-foreground mb-6">
               IT業界での豊富な経験を活かし、個人・法人向けにITサポートサービスを提供しています。
               「テクノロジーを誰もが使いやすく」をモットーに、お客様に寄り添ったサポートを心がけています。
             </p>
             
-            <h3 className="text-xl font-semibold mb-3">経歴</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-3">経歴</h3>
             <ul className="space-y-2 mb-6">
               <li>• IT企業でシステムエンジニアとして10年勤務</li>
               <li>• Web制作会社でフロントエンドエンジニアとして5年勤務</li>
@@ -20,11 +20,11 @@ export default function AboutPage() {
               <li>• パソコン教室での講師経験多数</li>
             </ul>
 
-            <h3 className="text-xl font-semibold mb-3">スキル・資格</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-3">スキル・資格</h3>
             <div className="grid md:grid-cols-2 gap-4 mb-6">
               <div>
-                <h4 className="font-semibold mb-2">プログラミング</h4>
-                <ul className="text-gray-600 space-y-1">
+                <h4 className="font-semibold text-foreground mb-2">プログラミング</h4>
+                <ul className="text-muted-foreground space-y-1">
                   <li>• JavaScript/TypeScript</li>
                   <li>• React/Next.js</li>
                   <li>• HTML/CSS</li>
@@ -33,8 +33,8 @@ export default function AboutPage() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold mb-2">その他</h4>
-                <ul className="text-gray-600 space-y-1">
+                <h4 className="font-semibold text-foreground mb-2">その他</h4>
+                <ul className="text-muted-foreground space-y-1">
                   <li>• 基本情報技術者</li>
                   <li>• Microsoft Office Specialist</li>
                   <li>• Google Workspace 認定</li>
@@ -52,7 +52,7 @@ export default function AboutPage() {
             </ul>
 
             <h3 className="text-xl font-semibold mb-3">メッセージ</h3>
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               パソコンやスマートフォンは今や生活に欠かせないツールですが、
               使いこなすのは意外と難しいものです。
               私は、お客様一人ひとりのレベルやニーズに合わせて、

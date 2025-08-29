@@ -24,13 +24,13 @@ export default function ContactPage() {
     <div className="min-h-screen py-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">お問い合わせ</h1>
-          <p className="text-lg text-gray-600">
+          <h1 className="text-4xl font-bold text-foreground mb-4">お問い合わせ</h1>
+          <p className="text-lg text-muted-foreground">
             ご質問・ご相談は以下のフォームからお気軽にお問い合わせください
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md p-8">
+        <form onSubmit={handleSubmit} className="bg-card rounded-lg shadow-md p-8">
           <Input
             label="お名前"
             required
@@ -80,7 +80,7 @@ export default function ContactPage() {
           </Button>
         </form>
 
-        <div className="mt-8 text-center text-gray-600">
+        <div className="mt-8 text-center text-muted-foreground">
           <p>お急ぎの場合は、お電話でもお問い合わせいただけます。</p>
           <p className="mt-2">TEL: 000-0000-0000（平日 9:00-18:00）</p>
         </div>

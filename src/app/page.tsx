@@ -10,14 +10,14 @@ export default function Home() {
       <HeroSection />
 
       {/* Services Section */}
-      <ServicesSection />
+      <ServicesSection useScrollAnimation={true} />
 
       {/* CTA Section */}
       <CtaSection>
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">
+        <h2 className="text-3xl font-bold text-foreground mb-4">
           お気軽にご相談ください
         </h2>
-        <p className="text-lg text-gray-600 mb-8">
+        <p className="text-lg text-muted-foreground mb-8">
           まずは無料相談から。あなたの課題をお聞かせください。
         </p>
         <Link href="/contact">

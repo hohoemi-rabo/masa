@@ -1,7 +1,9 @@
+"use client";
+
 import ServiceCard from "./ServiceCard";
 import { ContentSection, SectionHeader } from "./ui";
-import { StaggerContainer, StaggerItem, FadeInUp } from "./animations";
 import { FiMonitor, FiCode, FiBarChart2 } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -42,20 +44,59 @@ const services = [
   },
 ];
 
-export default function ServicesSection() {
+interface ServicesSectionProps {
+  useScrollAnimation?: boolean;
+}
+
+export default function ServicesSection({ useScrollAnimation = false }: ServicesSectionProps) {
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const
+      }
+    }
+  };
+
   return (
     <ContentSection className="py-24">
-      <FadeInUp>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={useScrollAnimation ? undefined : { opacity: 1, y: 0 }}
+        whileInView={useScrollAnimation ? { opacity: 1, y: 0 } : undefined}
+        viewport={useScrollAnimation ? { once: true, amount: 0.3 } : undefined}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <SectionHeader
           title="提供サービス"
           subtitle="お客様のニーズに合わせた3つのITソリューション"
           centered
         />
-      </FadeInUp>
+      </motion.div>
       
-      <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+      <motion.div 
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
+        variants={containerVariants}
+        initial="hidden"
+        animate={useScrollAnimation ? undefined : "visible"}
+        whileInView={useScrollAnimation ? "visible" : undefined}
+        viewport={useScrollAnimation ? { once: true, amount: 0.2 } : undefined}
+      >
         {services.map((service, index) => (
-          <StaggerItem key={index}>
+          <motion.div key={index} variants={itemVariants}>
             <ServiceCard
               icon={service.icon}
               title={service.title}
@@ -64,18 +105,23 @@ export default function ServicesSection() {
               href={service.href}
               className="h-full"
             />
-          </StaggerItem>
+          </motion.div>
         ))}
-      </StaggerContainer>
+      </motion.div>
       
       {/* Additional info */}
-      <FadeInUp delay={0.4}>
-        <div className="mt-16 text-center">
-          <p className="text-muted-foreground">
-            上記以外のご相談も承っております。お気軽にお問い合わせください。
-          </p>
-        </div>
-      </FadeInUp>
+      <motion.div 
+        className="mt-16 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={useScrollAnimation ? undefined : { opacity: 1, y: 0 }}
+        whileInView={useScrollAnimation ? { opacity: 1, y: 0 } : undefined}
+        viewport={useScrollAnimation ? { once: true, amount: 0.3 } : undefined}
+        transition={{ duration: 0.6, delay: useScrollAnimation ? 0 : 0.5, ease: "easeOut" }}
+      >
+        <p className="text-muted-foreground">
+          上記以外のご相談も承っております。お気軽にお問い合わせください。
+        </p>
+      </motion.div>
     </ContentSection>
   );
 }
