@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Button, Card, CardContent, ContentSection, CtaSection, SectionHeader } from "./components/ui";
+import { Button, CtaSection } from "./components/ui";
 import HeroSection from "./components/HeroSection";
+import ServicesSection from "./components/ServicesSection";
 
 export default function Home() {
   return (
@@ -9,44 +10,7 @@ export default function Home() {
       <HeroSection />
 
       {/* Services Section */}
-      <ContentSection>
-        <SectionHeader title="提供サービス" subtitle="お客様のニーズに合わせた3つのサービス" />
-        <div className="grid md:grid-cols-3 gap-8">
-          <Card hover>
-            <CardContent>
-              <h3 className="text-xl font-semibold mb-4">パソコン・スマホサポート</h3>
-              <p className="text-gray-600 mb-4">
-                トラブル解決、初期設定、使い方指導まで、あなたのIT環境を全面サポート
-              </p>
-              <Link href="/services/pc-support" className="text-primary-light hover:underline">
-                詳しく見る →
-              </Link>
-            </CardContent>
-          </Card>
-          <Card hover>
-            <CardContent>
-              <h3 className="text-xl font-semibold mb-4">ホームページ制作</h3>
-              <p className="text-gray-600 mb-4">
-                企業サイト、ランディングページ、ECサイトまで、目的に合わせた最適なサイトを制作
-              </p>
-              <Link href="/services/web-development" className="text-primary-light hover:underline">
-                詳しく見る →
-              </Link>
-            </CardContent>
-          </Card>
-          <Card hover>
-            <CardContent>
-              <h3 className="text-xl font-semibold mb-4">Excel業務効率化</h3>
-              <p className="text-gray-600 mb-4">
-                マクロ開発、自動化、データ分析で、業務時間を大幅削減
-              </p>
-              <Link href="/services/excel-automation" className="text-primary-light hover:underline">
-                詳しく見る →
-              </Link>
-            </CardContent>
-          </Card>
-        </div>
-      </ContentSection>
+      <ServicesSection />
 
       {/* CTA Section */}
       <CtaSection>
