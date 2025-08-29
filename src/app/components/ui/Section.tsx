@@ -21,7 +21,7 @@ export function SectionHeader({ title, subtitle, centered = true, className }: S
 // Section variants
 export function HeroSection({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <section className={cn("bg-gradient-to-b from-blue-50 to-white py-20", className)}>
+    <section className={cn("bg-gradient-to-b from-blue-50 to-background dark:from-gray-900 dark:to-background py-20 transition-colors", className)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</div>
     </section>
   );
@@ -29,7 +29,7 @@ export function HeroSection({ children, className }: { children: React.ReactNode
 
 export function ContentSection({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <section className={cn("py-16 bg-white", className)}>
+    <section className={cn("py-16 bg-background transition-colors", className)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</div>
     </section>
   );
@@ -37,7 +37,7 @@ export function ContentSection({ children, className }: { children: React.ReactN
 
 export function CtaSection({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <section className={cn("py-16 bg-gray-50", className)}>
+    <section className={cn("py-16 bg-muted transition-colors", className)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">{children}</div>
     </section>
   );

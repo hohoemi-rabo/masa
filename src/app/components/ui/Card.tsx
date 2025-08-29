@@ -5,8 +5,8 @@ export default function Card({ children, className, hover = false }: CardProps) 
   return (
     <div
       className={cn(
-        "bg-white rounded-lg shadow-md overflow-hidden",
-        hover && "transition-transform duration-200 hover:scale-105 hover:shadow-lg cursor-pointer",
+        "bg-card text-card-foreground rounded-lg shadow-md dark:shadow-lg overflow-hidden transition-colors",
+        hover && "transition-all duration-200 hover:scale-105 hover:shadow-lg dark:hover:shadow-xl cursor-pointer",
         className
       )}
     >
@@ -17,7 +17,7 @@ export default function Card({ children, className, hover = false }: CardProps) 
 
 // Card variants
 export function CardHeader({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <div className={cn("px-6 py-4 border-b border-gray-200", className)}>{children}</div>;
+  return <div className={cn("px-6 py-4 border-b border-border", className)}>{children}</div>;
 }
 
 export function CardContent({ children, className }: { children: React.ReactNode; className?: string }) {
@@ -25,5 +25,5 @@ export function CardContent({ children, className }: { children: React.ReactNode
 }
 
 export function CardFooter({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <div className={cn("px-6 py-4 border-t border-gray-200 bg-gray-50", className)}>{children}</div>;
+  return <div className={cn("px-6 py-4 border-t border-border bg-muted", className)}>{children}</div>;
 }

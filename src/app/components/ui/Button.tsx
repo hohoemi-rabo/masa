@@ -2,9 +2,9 @@ import { ButtonProps } from "@/types/components";
 import { cn } from "@/app/lib/utils";
 
 const buttonVariants = {
-  primary: "bg-primary-light text-white hover:bg-blue-600 focus:ring-primary-light",
-  secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-gray-500",
-  outline: "border border-primary-light text-primary-light hover:bg-blue-50 focus:ring-primary-light",
+  primary: "bg-primary text-white hover:bg-primary/90 focus:ring-primary dark:bg-primary-dark dark:hover:bg-primary-dark/90",
+  secondary: "bg-muted text-foreground hover:bg-muted/80 focus:ring-muted-foreground",
+  outline: "border border-primary text-primary hover:bg-primary/10 focus:ring-primary dark:border-primary-dark dark:text-primary-dark dark:hover:bg-primary-dark/10",
 };
 
 const buttonSizes = {
