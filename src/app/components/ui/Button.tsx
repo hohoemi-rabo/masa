@@ -2,9 +2,9 @@ import { ButtonProps } from "@/types/components";
 import { cn } from "@/app/lib/utils";
 
 const buttonVariants = {
-  primary: "bg-primary text-white hover:bg-primary/90 focus:ring-primary dark:bg-primary-dark dark:hover:bg-primary-dark/90",
-  secondary: "bg-muted text-foreground hover:bg-muted/80 focus:ring-muted-foreground",
-  outline: "border border-primary text-primary hover:bg-primary/10 focus:ring-primary dark:border-primary-dark dark:text-primary-dark dark:hover:bg-primary-dark/10",
+  primary: "bg-primary text-white hover:bg-primary-dark shadow-md hover:shadow-lg active:scale-95 focus:ring-primary dark:bg-primary-dark dark:hover:bg-primary dark:shadow-lg dark:hover:shadow-xl",
+  secondary: "bg-muted text-foreground hover:bg-muted/80 shadow-sm hover:shadow-md active:scale-95 focus:ring-muted-foreground",
+  outline: "border-2 border-primary text-primary hover:bg-primary hover:text-white shadow-sm hover:shadow-md active:scale-95 focus:ring-primary dark:border-primary-dark dark:text-primary-dark dark:hover:bg-primary-dark dark:hover:text-white",
 };
 
 const buttonSizes = {
@@ -29,10 +29,10 @@ export default function Button({
       disabled={disabled || loading}
       onClick={onClick}
       className={cn(
-        "inline-flex items-center justify-center font-medium rounded-lg",
-        "transition-colors duration-200",
+        "inline-flex items-center justify-center font-semibold rounded-lg",
+        "transition-all duration-200 ease-in-out",
         "focus:outline-none focus:ring-2 focus:ring-offset-2",
-        "disabled:opacity-50 disabled:cursor-not-allowed",
+        "disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100",
         buttonVariants[variant],
         buttonSizes[size],
         className

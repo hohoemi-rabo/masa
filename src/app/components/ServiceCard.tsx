@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 import { cn } from "../lib/utils";
+import { FiCheck, FiArrowRight } from "react-icons/fi";
 
 interface ServiceCardProps {
   icon: ReactNode;
@@ -22,8 +23,10 @@ export default function ServiceCard({
   return (
     <div
       className={cn(
-        "group relative bg-card text-card-foreground rounded-2xl shadow-lg dark:shadow-xl overflow-hidden transition-all duration-300",
-        "hover:scale-105 hover:shadow-2xl dark:hover:shadow-2xl",
+        "group relative bg-card text-card-foreground rounded-2xl overflow-hidden transition-all duration-300",
+        "shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] dark:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.3)]",
+        "hover:scale-[1.02] hover:shadow-[0_20px_40px_-4px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_20px_40px_-4px_rgba(0,0,0,0.4)]",
+        "border border-border/50",
         className
       )}
     >
@@ -33,8 +36,8 @@ export default function ServiceCard({
       <div className="relative p-8">
         {/* Icon */}
         <div className="mb-6">
-          <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 dark:from-primary-dark/20 dark:to-secondary/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <div className="text-primary dark:text-primary-dark">
+          <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-secondary/10 dark:from-primary-dark/20 dark:to-secondary/20 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+            <div className="text-primary dark:text-primary-dark group-hover:scale-110 transition-transform duration-300">
               {icon}
             </div>
           </div>
@@ -48,19 +51,7 @@ export default function ServiceCard({
         <ul className="space-y-2 mb-6">
           {features.map((feature, index) => (
             <li key={index} className="flex items-start">
-              <svg
-                className="w-5 h-5 text-primary dark:text-primary-dark mr-2 mt-0.5 flex-shrink-0"
-                fill="none"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
+              <FiCheck className="w-5 h-5 text-primary dark:text-primary-dark mr-2 mt-0.5 flex-shrink-0" />
               <span className="text-sm text-muted-foreground">{feature}</span>
             </li>
           ))}
@@ -69,22 +60,10 @@ export default function ServiceCard({
         {/* CTA Link */}
         <Link
           href={href}
-          className="inline-flex items-center text-primary dark:text-primary-dark font-medium group-hover:gap-3 transition-all duration-300"
+          className="inline-flex items-center text-primary dark:text-primary-dark font-semibold hover:underline underline-offset-4 transition-all duration-300"
         >
           <span>詳しく見る</span>
-          <svg
-            className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300"
-            fill="none"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M13 7l5 5m0 0l-5 5m5-5H6"
-            />
-          </svg>
+          <FiArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
         </Link>
       </div>
     </div>

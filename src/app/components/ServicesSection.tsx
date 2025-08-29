@@ -1,15 +1,11 @@
 import ServiceCard from "./ServiceCard";
 import { ContentSection, SectionHeader } from "./ui";
 import { StaggerContainer, StaggerItem, FadeInUp } from "./animations";
+import { FiMonitor, FiCode, FiBarChart2 } from "react-icons/fi";
 
 const services = [
   {
-    icon: (
-      <svg className="w-8 h-8" fill="none" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01" />
-      </svg>
-    ),
+    icon: <FiMonitor className="w-8 h-8" />,
     title: "パソコン・スマホサポート",
     description: "ITトラブルを迅速に解決し、快適なデジタルライフをサポートします",
     features: [
@@ -21,11 +17,7 @@ const services = [
     href: "/services/pc-support",
   },
   {
-    icon: (
-      <svg className="w-8 h-8" fill="none" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
-    ),
+    icon: <FiCode className="w-8 h-8" />,
     title: "ホームページ制作",
     description: "最新技術を活用した、高品質で効果的なWebサイトを制作します",
     features: [
@@ -37,12 +29,7 @@ const services = [
     href: "/services/web-development",
   },
   {
-    icon: (
-      <svg className="w-8 h-8" fill="none" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v1a1 1 0 001 1h4a1 1 0 001-1v-1m3-2V8a2 2 0 00-2-2H8a2 2 0 00-2 2v7m3-2h6" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12h18M9 16h6" />
-      </svg>
-    ),
+    icon: <FiBarChart2 className="w-8 h-8" />,
     title: "Excel業務効率化",
     description: "煩雑な作業を自動化し、業務時間を大幅に削減します",
     features: [
