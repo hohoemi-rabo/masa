@@ -1,5 +1,36 @@
+"use client";
+
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { Button } from "./ui";
+
+// 3Dコンポーネントを動的インポート（SSR無効化）
+const RubiksCube = dynamic(() => import("./RubiksCube"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-24 h-24 bg-primary/30 dark:bg-primary-dark/30 rounded-2xl mx-auto mb-4 flex items-center justify-center animate-pulse">
+          <svg
+            className="w-12 h-12 text-primary dark:text-primary-dark"
+            fill="none"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            />
+          </svg>
+        </div>
+        <p className="text-sm text-muted-foreground">3Dアニメーション</p>
+        <p className="text-xs text-muted-foreground">読み込み中...</p>
+      </div>
+    </div>
+  ),
+});
 
 export default function HeroSection() {
   return (
@@ -61,36 +92,10 @@ export default function HeroSection() {
             </div>
           </div>
           
-          {/* Right side - 3D Animation Placeholder */}
+          {/* Right side - 3D Animation */}
           <div className="flex justify-center lg:justify-end">
-            <div className="relative">
-              {/* 3D Animation placeholder */}
-              <div className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-primary/20 to-secondary/20 dark:from-primary-dark/20 dark:to-secondary/20 rounded-3xl flex items-center justify-center shadow-2xl">
-                <div className="text-center">
-                  <div className="w-24 h-24 bg-primary/30 dark:bg-primary-dark/30 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                    <svg
-                      className="w-12 h-12 text-primary dark:text-primary-dark"
-                      fill="none"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-sm text-muted-foreground">3Dアニメーション</p>
-                  <p className="text-xs text-muted-foreground">準備中</p>
-                </div>
-              </div>
-              
-              {/* Floating elements */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 bg-primary/20 dark:bg-primary-dark/20 rounded-full animate-bounce"></div>
-              <div className="absolute -bottom-4 -right-4 w-6 h-6 bg-secondary/30 rounded-full animate-pulse"></div>
-              <div className="absolute top-1/2 -left-8 w-4 h-4 bg-primary/40 dark:bg-primary-dark/40 rounded-full animate-ping"></div>
+            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
+              <RubiksCube />
             </div>
           </div>
         </div>
