@@ -1,30 +1,12 @@
 import Link from "next/link";
-import { Button, Card, CardContent, HeroSection, ContentSection, CtaSection, SectionHeader } from "./components/ui";
+import { Button, Card, CardContent, ContentSection, CtaSection, SectionHeader } from "./components/ui";
+import HeroSection from "./components/HeroSection";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <HeroSection>
-        <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-            テクノロジーで、あなたの"困った"を解決します
-          </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            パソコン・スマホサポートから、ホームページ制作、Excel業務効率化まで
-            <br />
-            AI時代の効率的なITソリューションを提供
-          </p>
-          <div className="flex gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg">お問い合わせ</Button>
-            </Link>
-            <Link href="/services">
-              <Button variant="outline" size="lg">サービスを見る</Button>
-            </Link>
-          </div>
-        </div>
-      </HeroSection>
+      <HeroSection />
 
       {/* Services Section */}
       <ContentSection>
