@@ -1,5 +1,6 @@
 import ServiceCard from "./ServiceCard";
 import { ContentSection, SectionHeader } from "./ui";
+import { StaggerContainer, StaggerItem, FadeInUp } from "./animations";
 
 const services = [
   {
@@ -57,32 +58,37 @@ const services = [
 export default function ServicesSection() {
   return (
     <ContentSection className="py-24">
-      <SectionHeader
-        title="提供サービス"
-        subtitle="お客様のニーズに合わせた3つのITソリューション"
-        centered
-      />
+      <FadeInUp>
+        <SectionHeader
+          title="提供サービス"
+          subtitle="お客様のニーズに合わせた3つのITソリューション"
+          centered
+        />
+      </FadeInUp>
       
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+      <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
         {services.map((service, index) => (
-          <ServiceCard
-            key={index}
-            icon={service.icon}
-            title={service.title}
-            description={service.description}
-            features={service.features}
-            href={service.href}
-            className="h-full"
-          />
+          <StaggerItem key={index}>
+            <ServiceCard
+              icon={service.icon}
+              title={service.title}
+              description={service.description}
+              features={service.features}
+              href={service.href}
+              className="h-full"
+            />
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
       
       {/* Additional info */}
-      <div className="mt-16 text-center">
-        <p className="text-muted-foreground">
-          上記以外のご相談も承っております。お気軽にお問い合わせください。
-        </p>
-      </div>
+      <FadeInUp delay={0.4}>
+        <div className="mt-16 text-center">
+          <p className="text-muted-foreground">
+            上記以外のご相談も承っております。お気軽にお問い合わせください。
+          </p>
+        </div>
+      </FadeInUp>
     </ContentSection>
   );
 }

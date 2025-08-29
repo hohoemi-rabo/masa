@@ -3,6 +3,7 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Button } from "./ui";
+import { FadeInUp, FadeInLeft, ScaleIn } from "./animations";
 
 // 3Dコンポーネントを動的インポート（SSR無効化）
 const RubiksCube = dynamic(() => import("./RubiksCube"), {
@@ -45,59 +46,69 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Content */}
           <div className="text-center lg:text-left">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              テクノロジーで、
-              <br />
-              あなたの
-              <span className="text-primary dark:text-primary-dark">"困った"</span>
-              を解決します
-            </h1>
+            <FadeInLeft>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+                テクノロジーで、
+                <br />
+                あなたの
+                <span className="text-primary dark:text-primary-dark">"困った"</span>
+                を解決します
+              </h1>
+            </FadeInLeft>
             
-            <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-              パソコン・スマホサポートから、ホームページ制作、Excel業務効率化まで
-              <br className="hidden sm:block" />
-              AI時代の効率的なITソリューションを提供
-            </p>
+            <FadeInLeft delay={0.1}>
+              <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
+                パソコン・スマホサポートから、ホームページ制作、Excel業務効率化まで
+                <br className="hidden sm:block" />
+                AI時代の効率的なITソリューションを提供
+              </p>
+            </FadeInLeft>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link href="/contact">
-                <Button size="lg" className="w-full sm:w-auto">
-                  お問い合わせ
-                </Button>
-              </Link>
-              <Link href="/services">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                  サービスを見る
-                </Button>
-              </Link>
-            </div>
+            <FadeInUp delay={0.2}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link href="/contact">
+                  <Button size="lg" className="w-full sm:w-auto">
+                    お問い合わせ
+                  </Button>
+                </Link>
+                <Link href="/services">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                    サービスを見る
+                  </Button>
+                </Link>
+              </div>
+            </FadeInUp>
             
             {/* Trust indicators */}
-            <div className="mt-12 pt-8 border-t border-border">
-              <p className="text-sm text-muted-foreground mb-4">信頼の実績</p>
-              <div className="flex flex-col sm:flex-row gap-6 text-center lg:text-left">
-                <div>
-                  <div className="text-2xl font-bold text-primary dark:text-primary-dark">50+</div>
-                  <div className="text-sm text-muted-foreground">プロジェクト実績</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-primary dark:text-primary-dark">98%</div>
-                  <div className="text-sm text-muted-foreground">顧客満足度</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-primary dark:text-primary-dark">24h</div>
-                  <div className="text-sm text-muted-foreground">平均対応時間</div>
+            <FadeInUp delay={0.3}>
+              <div className="mt-12 pt-8 border-t border-border">
+                <p className="text-sm text-muted-foreground mb-4">信頼の実績</p>
+                <div className="flex flex-col sm:flex-row gap-6 text-center lg:text-left">
+                  <div>
+                    <div className="text-2xl font-bold text-primary dark:text-primary-dark">50+</div>
+                    <div className="text-sm text-muted-foreground">プロジェクト実績</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-primary dark:text-primary-dark">98%</div>
+                    <div className="text-sm text-muted-foreground">顧客満足度</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-primary dark:text-primary-dark">24h</div>
+                    <div className="text-sm text-muted-foreground">平均対応時間</div>
+                  </div>
                 </div>
               </div>
-            </div>
+            </FadeInUp>
           </div>
           
           {/* Right side - 3D Animation */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-              <RubiksCube />
+          <ScaleIn delay={0.4}>
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative w-80 h-80 lg:w-96 lg:h-96">
+                <RubiksCube />
+              </div>
             </div>
-          </div>
+          </ScaleIn>
         </div>
       </div>
       
