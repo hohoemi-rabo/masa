@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FiHeart, FiMessageCircle } from "react-icons/fi";
 import ViewTransitionLink from "../components/ViewTransitionLink";
 import { posts } from "./posts-data";
@@ -122,11 +123,14 @@ export default function InstagramPage() {
               className="relative aspect-square bg-muted rounded-lg overflow-hidden group"
             >
               <ViewTransitionLink href={`/instagram/photo/${post.id}`}>
-                <div className="cursor-pointer">
-                  <img
+                <div className="cursor-pointer relative w-full h-full">
+                  <Image
                     src={post.image}
                     alt={`Post ${post.id}`}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                    className="object-cover"
+                    loading="lazy"
                   />
                 
                   {/* Hover Overlay */}

@@ -78,9 +78,60 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling and responsive font size */
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* レスポンシブタイポグラフィ */
+@media (min-width: 768px) {
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.75rem; }
+}
+
+@media (max-width: 767px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+}
+
+/* 読みやすさのための最大幅 */
+.prose {
+  max-width: 65ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* モバイル向け最適化 */
+@media (max-width: 640px) {
+  /* より大きなタップターゲット */
+  button, a, input, textarea, select {
+    min-height: 44px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  
+  /* モバイルでの余白調整 */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* タッチデバイス向けホバー効果 */
+@media (hover: none) and (pointer: coarse) {
+  button:active, a:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
 }
 
 /* Custom scrollbar */

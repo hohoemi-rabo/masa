@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getPost } from "../../posts-data";
 import { FiArrowLeft, FiHeart, FiMessageCircle, FiSend, FiBookmark, FiMoreHorizontal } from "react-icons/fi";
 
@@ -40,11 +41,14 @@ export default async function PhotoPage({ params }: { params: Promise<{ id: stri
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Image */}
-          <div className="bg-black rounded-lg overflow-hidden flex items-center justify-center">
-            <img
+          <div className="relative bg-black rounded-lg overflow-hidden aspect-square">
+            <Image
               src={post.image}
               alt={`Post ${post.id}`}
-              className="w-full h-auto object-contain"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-contain"
+              priority
             />
           </div>
 
