@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button, CtaSection } from "./components/ui";
 import HeroSection from "./components/HeroSection";
 import ServicesSection from "./components/ServicesSection";
+import ProfileSection from "./components/ProfileSection";
 
 export default function Home() {
   return (
@@ -11,6 +12,9 @@ export default function Home() {
 
       {/* Services Section */}
       <ServicesSection useScrollAnimation={true} />
+
+      {/* Profile Section */}
+      <ProfileSection />
 
       {/* CTA Section */}
       <CtaSection>
