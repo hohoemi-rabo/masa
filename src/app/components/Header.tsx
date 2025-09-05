@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import ViewTransitionLink from "./ViewTransitionLink";
 
 const navigation = [
   { name: "ホーム", href: "/" },
@@ -22,22 +23,22 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold text-primary-light dark:text-primary-dark">
+            <ViewTransitionLink href="/" className="text-xl font-bold text-primary-light dark:text-primary-dark">
               パソコン講師
-            </Link>
+            </ViewTransitionLink>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {navigation.map((item) => (
-                <Link
+                <ViewTransitionLink
                   key={item.name}
                   href={item.href}
                   className="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors"
                 >
                   {item.name}
-                </Link>
+                </ViewTransitionLink>
               ))}
             </div>
           </div>
@@ -83,14 +84,14 @@ export default function Header() {
           <div className="md:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
-                <Link
+                <ViewTransitionLink
                   key={item.name}
                   href={item.href}
                   className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-light dark:hover:text-primary-dark transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
-                </Link>
+                </ViewTransitionLink>
               ))}
             </div>
           </div>
