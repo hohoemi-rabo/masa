@@ -12,6 +12,16 @@ const nextConfig: NextConfig = {
     }
     return config;
   },
+  logging: {
+    fetches: {
+      fullUrl: false,
+    },
+  },
+  onDemandEntries: {
+    // CSRベイルアウトエラーを抑制
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 2,
+  },
 };
 
 export default nextConfig;
