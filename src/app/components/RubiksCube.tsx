@@ -2,17 +2,17 @@
 
 import { useRef, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera, RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
 
-// ルービックキューブの色定義
+// ルービックキューブの色定義 - 青のグラデーション
 const CUBE_COLORS = {
-  front: "#ff0000",  // 赤
-  back: "#ff8800",   // オレンジ
-  top: "#ffffff",    // 白
-  bottom: "#ffff00", // 黄
-  right: "#00ff00",  // 緑
-  left: "#0000ff",   // 青
+  front: "#0d47a1",  // ダークブルー
+  back: "#1565c0",   // ブルー
+  top: "#1976d2",    // ライトブルー
+  bottom: "#1e88e5", // ブライトブルー
+  right: "#2196f3",  // スカイブルー
+  left: "#42a5f5",   // ライトスカイブルー
 };
 
 // 個別のキューブピース
@@ -27,42 +27,54 @@ function CubePiece({ position }: { position: [number, number, number] }) {
     // Right face (x = 1)
     mats.push(
       new THREE.MeshStandardMaterial({
-        color: x === 1 ? CUBE_COLORS.right : "#1a1a1a",
+        color: x === 1 ? CUBE_COLORS.right : "#0a1929",
+        metalness: 0.4,
+        roughness: 0.3,
       })
     );
     
     // Left face (x = -1)
     mats.push(
       new THREE.MeshStandardMaterial({
-        color: x === -1 ? CUBE_COLORS.left : "#1a1a1a",
+        color: x === -1 ? CUBE_COLORS.left : "#0a1929",
+        metalness: 0.4,
+        roughness: 0.3,
       })
     );
     
     // Top face (y = 1)
     mats.push(
       new THREE.MeshStandardMaterial({
-        color: y === 1 ? CUBE_COLORS.top : "#1a1a1a",
+        color: y === 1 ? CUBE_COLORS.top : "#0a1929",
+        metalness: 0.4,
+        roughness: 0.3,
       })
     );
     
     // Bottom face (y = -1)
     mats.push(
       new THREE.MeshStandardMaterial({
-        color: y === -1 ? CUBE_COLORS.bottom : "#1a1a1a",
+        color: y === -1 ? CUBE_COLORS.bottom : "#0a1929",
+        metalness: 0.4,
+        roughness: 0.3,
       })
     );
     
     // Front face (z = 1)
     mats.push(
       new THREE.MeshStandardMaterial({
-        color: z === 1 ? CUBE_COLORS.front : "#1a1a1a",
+        color: z === 1 ? CUBE_COLORS.front : "#0a1929",
+        metalness: 0.4,
+        roughness: 0.3,
       })
     );
     
     // Back face (z = -1)
     mats.push(
       new THREE.MeshStandardMaterial({
-        color: z === -1 ? CUBE_COLORS.back : "#1a1a1a",
+        color: z === -1 ? CUBE_COLORS.back : "#0a1929",
+        metalness: 0.4,
+        roughness: 0.3,
       })
     );
     
@@ -70,9 +82,16 @@ function CubePiece({ position }: { position: [number, number, number] }) {
   }, [position]);
 
   return (
-    <mesh ref={meshRef} position={position} material={materials}>
-      <boxGeometry args={[0.95, 0.95, 0.95]} />
-    </mesh>
+    <RoundedBox
+      ref={meshRef}
+      position={position}
+      material={materials}
+      args={[0.95, 0.95, 0.95]}
+      radius={0.08}
+      smoothness={4}
+    >
+      {/* Material is passed as prop */}
+    </RoundedBox>
   );
 }
 
@@ -80,11 +99,11 @@ function CubePiece({ position }: { position: [number, number, number] }) {
 function RubiksCubeModel() {
   const groupRef = useRef<THREE.Group>(null);
 
-  // 自動回転アニメーション
-  useFrame((state, delta) => {
+  // 自動回転アニメーション - 360度回転
+  useFrame((_, delta) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.3;
-      groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
+      groupRef.current.rotation.y += delta * 0.3;  // Y軸回転（水平）
+      groupRef.current.rotation.x += delta * 0.2;  // X軸回転（垂直）- 360度回転
     }
   });
 
@@ -136,40 +155,50 @@ export default function RubiksCube() {
           powerPreference: isMobile ? "low-power" : "high-performance"
         }}
       >
-        {/* カメラ設定 */}
+        {/* カメラ設定 - 少し引いてバランス良く */}
         <PerspectiveCamera 
           makeDefault 
-          position={[5, 5, 5]} 
-          fov={45}
+          position={[4.8, 4.8, 4.8]} 
+          fov={36}
         />
         
-        {/* ライティング */}
-        <ambientLight intensity={0.5} />
+        {/* ライティング - 青のグラデーション */}
+        <ambientLight intensity={0.6} />
         <directionalLight
           position={[10, 10, 5]}
-          intensity={1}
+          intensity={1.2}
+          color="#2196f3"
           castShadow
           shadow-mapSize={[1024, 1024]}
         />
         <directionalLight 
           position={[-10, -10, -5]} 
-          intensity={0.3} 
+          intensity={0.6}
+          color="#1976d2"
         />
         <pointLight 
           position={[0, 10, 0]} 
-          intensity={0.5} 
+          intensity={0.8}
+          color="#64b5f6"
+        />
+        <pointLight 
+          position={[5, -5, 5]} 
+          intensity={0.5}
+          color="#42a5f5"
         />
         
         {/* ルービックキューブ */}
         <RubiksCubeModel />
         
-        {/* OrbitControls（タッチ/マウス操作用） */}
+        {/* OrbitControls（タッチ/マウス操作用） - 360度回転可能 */}
         <OrbitControls 
           enableZoom={false}
           enablePan={false}
           autoRotate={false}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 3}
+          maxPolarAngle={Math.PI}
+          minPolarAngle={0}
+          enabled={true}
+          enableRotate={true}
         />
       </Canvas>
     </div>

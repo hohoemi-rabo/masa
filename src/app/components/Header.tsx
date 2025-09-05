@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
@@ -38,8 +37,26 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <ViewTransitionLink href="/" className="text-xl font-bold text-primary-light dark:text-primary-dark">
-              パソコン講師
+            <ViewTransitionLink href="/" className="relative group">
+              <motion.span 
+                className="text-xl font-bold bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                Katoh Masayuki
+              </motion.span>
+              {/* Glow effect on hover */}
+              <span className="absolute inset-0 text-xl font-bold bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300">
+                Katoh Masayuki
+              </span>
+              {/* Underline animation */}
+              <motion.div 
+                className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-blue-600 to-cyan-500 origin-left"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.3 }}
+              />
             </ViewTransitionLink>
           </div>
 
