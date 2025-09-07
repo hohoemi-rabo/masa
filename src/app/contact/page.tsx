@@ -57,16 +57,6 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {submitMessage && (
-          <div className={`mb-6 p-4 rounded-lg ${
-            submitMessage.type === 'success' 
-              ? 'bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300 border border-green-200 dark:border-green-800'
-              : 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-300 border border-red-200 dark:border-red-800'
-          }`}>
-            {submitMessage.text}
-          </div>
-        )}
-
         <form onSubmit={handleSubmit(onSubmit)} className="bg-card rounded-lg shadow-md p-8">
           {/* Honeypot field - hidden from users */}
           <input
@@ -169,6 +159,16 @@ export default function ContactPage() {
             {isSubmitting ? "送信中..." : "送信する"}
           </button>
         </form>
+
+        {submitMessage && (
+          <div className={`mt-8 mb-6 p-4 rounded-lg ${
+            submitMessage.type === 'success' 
+              ? 'bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300 border border-green-200 dark:border-green-800'
+              : 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-300 border border-red-200 dark:border-red-800'
+          }`}>
+            {submitMessage.text}
+          </div>
+        )}
 
         <div className="mt-8 text-center text-muted-foreground">
           <p>お電話でのお問い合わせも承っております。お気軽にお電話ください。</p>
