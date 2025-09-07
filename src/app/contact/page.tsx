@@ -1,23 +1,50 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Input, Textarea, Select } from "../components/ui";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { contactFormSchema, ContactFormData, contactCategories } from "../lib/validations/contact";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    category: "",
-    message: "",
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema)
   });
 
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
+    setSubmitMessage(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: フォーム送信処理を実装
-    console.log("Form submitted:", formData);
-    alert("お問い合わせを受け付けました。後日ご連絡いたします。");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitMessage({ type: 'success', text: result.message });
+        reset();
+      } else {
+        setSubmitMessage({ type: 'error', text: result.error || "送信に失敗しました" });
+      }
+    } catch (error) {
+      console.error("Submit error:", error);
+      setSubmitMessage({ type: 'error', text: "送信に失敗しました。しばらくしてから再度お試しください。" });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -30,54 +57,117 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-card rounded-lg shadow-md p-8">
-          <Input
-            label="お名前"
-            required
-            value={formData.name}
-            onChange={(value) => setFormData({ ...formData, name: value })}
-          />
-          
-          <Input
-            label="メールアドレス"
-            type="email"
-            required
-            value={formData.email}
-            onChange={(value) => setFormData({ ...formData, email: value })}
-          />
-          
-          <Input
-            label="電話番号（任意）"
-            type="tel"
-            value={formData.phone}
-            onChange={(value) => setFormData({ ...formData, phone: value })}
-          />
-          
-          <Select
-            label="お問い合わせ種別"
-            required
-            options={[
-              { value: "pc-support", label: "パソコン・スマホサポート" },
-              { value: "web-development", label: "ホームページ制作" },
-              { value: "excel-automation", label: "Excel業務効率化" },
-              { value: "other", label: "その他" },
-            ]}
-            value={formData.category}
-            onChange={(value) => setFormData({ ...formData, category: value })}
-          />
-          
-          <Textarea
-            label="お問い合わせ内容"
-            required
-            rows={6}
-            placeholder="ご相談内容をお書きください"
-            value={formData.message}
-            onChange={(value) => setFormData({ ...formData, message: value })}
+        {submitMessage && (
+          <div className={`mb-6 p-4 rounded-lg ${
+            submitMessage.type === 'success' 
+              ? 'bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300 border border-green-200 dark:border-green-800'
+              : 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-300 border border-red-200 dark:border-red-800'
+          }`}>
+            {submitMessage.text}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit(onSubmit)} className="bg-card rounded-lg shadow-md p-8">
+          {/* Honeypot field - hidden from users */}
+          <input
+            {...register("honeypot")}
+            style={{ display: 'none' }}
+            tabIndex={-1}
+            autoComplete="off"
           />
 
-          <Button type="submit" className="w-full" size="lg">
-            送信する
-          </Button>
+          <div className="mb-6">
+            <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+              お名前 <span className="text-red-500">*</span>
+            </label>
+            <input
+              {...register("name")}
+              type="text"
+              id="name"
+              className="w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-background text-foreground"
+              placeholder="山田太郎"
+            />
+            {errors.name && (
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name.message}</p>
+            )}
+          </div>
+
+          <div className="mb-6">
+            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+              メールアドレス <span className="text-red-500">*</span>
+            </label>
+            <input
+              {...register("email")}
+              type="email"
+              id="email"
+              className="w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-background text-foreground"
+              placeholder="example@email.com"
+            />
+            {errors.email && (
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email.message}</p>
+            )}
+          </div>
+
+          <div className="mb-6">
+            <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+              電話番号（任意）
+            </label>
+            <input
+              {...register("phone")}
+              type="tel"
+              id="phone"
+              className="w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-background text-foreground"
+              placeholder="090-1234-5678"
+            />
+            {errors.phone && (
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.phone.message}</p>
+            )}
+          </div>
+
+          <div className="mb-6">
+            <label htmlFor="category" className="block text-sm font-medium text-foreground mb-2">
+              お問い合わせ種別 <span className="text-red-500">*</span>
+            </label>
+            <select
+              {...register("category")}
+              id="category"
+              className="w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-background text-foreground"
+            >
+              <option value="">選択してください</option>
+              {contactCategories.map((cat) => (
+                <option key={cat.value} value={cat.value}>
+                  {cat.label}
+                </option>
+              ))}
+            </select>
+            {errors.category && (
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.category.message}</p>
+            )}
+          </div>
+
+          <div className="mb-6">
+            <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+              お問い合わせ内容 <span className="text-red-500">*</span>
+            </label>
+            <textarea
+              {...register("message")}
+              id="message"
+              rows={6}
+              className="w-full px-3 py-2 border border-border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-background text-foreground"
+              placeholder="ご相談内容をお書きください"
+            />
+            {errors.message && (
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message.message}</p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-primary hover:bg-primary/90 disabled:bg-primary/50 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-lg"
+          >
+            {isSubmitting ? "送信中..." : "送信する"}
+          </button>
         </form>
 
         <div className="mt-8 text-center text-muted-foreground">
