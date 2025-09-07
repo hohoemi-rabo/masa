@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import CTASection from "../components/CTASection";
 
 export default function AboutPage() {
   return (
@@ -161,51 +161,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Contact CTA - Full width */}
-        <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-8 text-center">
-          <h3 className="text-2xl font-semibold text-foreground mb-4">📧 お気軽にご相談ください</h3>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
-            ITのことでお困りのことがあれば、どんな小さなことでも
-            お気軽にご相談ください。お客様一人ひとりのレベルやニーズに合わせて、
-            最適なサポートを提供いたします。
-          </p>
-          <Link 
-            href="/contact" 
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
-          >
-            お問い合わせはこちら
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-16 bg-muted rounded-lg p-8 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-4">
-            お気軽にご相談ください
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            まずは無料相談から。あなたの課題をお聞かせください。
-          </p>
-          <Link 
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors"
-          >
-            無料相談を申し込む
-          </Link>
-        </div>
-
-        {/* Contact Info */}
-        <div className="mt-8 text-center text-muted-foreground">
-          <p>お電話でのお問い合わせも承っております。お気軽にお電話ください。</p>
-          <p className="mt-2 font-semibold text-foreground">
-            <a href="tel:090-5646-560" className="hover:text-primary transition-colors">
-              TEL: 090-5646-560
-            </a>
-          </p>
-          <p className="text-sm">電話受付：随時対応可能</p>
-        </div>
+        <CTASection />
       </div>
     </div>
   );
