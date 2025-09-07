@@ -103,7 +103,7 @@ ${message}
     
     if (error instanceof ZodError) {
       return NextResponse.json(
-        { error: "入力内容に不備があります", details: error.errors },
+        { error: "入力内容に不備があります", details: error.issues },
         { status: 400 }
       );
     }

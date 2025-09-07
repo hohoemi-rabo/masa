@@ -1,14 +1,13 @@
-import Link from "next/link";
 import { ReactNode } from "react";
 import { cn } from "../lib/utils";
-import { FiCheck, FiArrowRight } from "react-icons/fi";
+import { FiCheck } from "react-icons/fi";
 
 interface ServiceCardProps {
   icon: ReactNode;
   title: string;
   description: string;
   features: string[];
-  href: string;
+  href?: string; // 将来使用予定のため残すが任意にする
   className?: string;
 }
 
@@ -17,7 +16,6 @@ export default function ServiceCard({
   title,
   description,
   features,
-  href,
   className,
 }: ServiceCardProps) {
   return (
