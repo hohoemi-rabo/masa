@@ -2,9 +2,9 @@ import Link from "next/link";
 
 const footerLinks = {
   サービス: [
-    { name: "パソコン・スマホサポート", href: "/services/pc-support" },
-    { name: "ホームページ制作", href: "/services/web-development" },
-    { name: "Excel業務効率化", href: "/services/excel-automation" },
+    { name: "Webサイト制作", href: "/services" },
+    { name: "業務自動化・効率化", href: "/services" },
+    { name: "パソコン・スマホサポート", href: "/services" },
   ],
   情報: [
     { name: "制作実績", href: "/works" },

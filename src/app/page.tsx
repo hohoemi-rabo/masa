@@ -1,27 +1,14 @@
-import Link from "next/link";
 import { Suspense } from "react";
-import { Button, CtaSection } from "./components/ui";
 import HeroSection from "./components/HeroSection";
 import ServicesSectionWrapper from "./components/ServicesSectionWrapper";
 import ProfileSectionWrapper from "./components/ProfileSectionWrapper";
+import CTASection from "./components/CTASection";
 
 // CTAセクションを遅延読み込み
 async function DelayedCTASection() {
   await new Promise(resolve => setTimeout(resolve, 2000));
   
-  return (
-    <CtaSection>
-      <h2 className="text-3xl font-bold text-foreground mb-4">
-        お気軽にご相談ください
-      </h2>
-      <p className="text-lg text-muted-foreground mb-8">
-        まずは無料相談から。あなたの課題をお聞かせください。
-      </p>
-      <Link href="/contact">
-        <Button size="lg">無料相談を申し込む</Button>
-      </Link>
-    </CtaSection>
-  );
+  return <CTASection />;
 }
 
 // CTAセクションのスケルトン
