@@ -52,7 +52,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              テクノロジーで、
+              テクノロジーで
               <br />
               あなたの
               <span className="text-primary dark:text-primary-dark">"困った"</span>
@@ -65,7 +65,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             >
-              パソコン・スマホサポートから、ホームページ制作、Excel業務効率化まで
+              Webサイト制作、業務自動化・効率化、パソコン・スマホサポートまで
               <br className="hidden sm:block" />
               AI時代の効率的なITソリューションを提供
             </motion.p>

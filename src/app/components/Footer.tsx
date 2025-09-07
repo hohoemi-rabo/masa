@@ -9,7 +9,7 @@ const footerLinks = {
   情報: [
     { name: "制作実績", href: "/works" },
     { name: "ブログ", href: "/blog" },
-    { name: "プロフィール", href: "/about" },
+    { name: "プロフィール", href: "/profile" },
   ],
   サポート: [
     { name: "お問い合わせ", href: "/contact" },

@@ -7,20 +7,8 @@ import { motion } from "framer-motion";
 
 const services = [
   {
-    icon: <FiMonitor className="w-8 h-8" />,
-    title: "パソコン・スマホサポート",
-    description: "ITトラブルを迅速に解決し、快適なデジタルライフをサポートします",
-    features: [
-      "パソコン・スマホの初期設定",
-      "トラブルシューティング",
-      "データ移行・バックアップ",
-      "セキュリティ対策",
-    ],
-    href: "/services/pc-support",
-  },
-  {
     icon: <FiCode className="w-8 h-8" />,
-    title: "ホームページ制作",
+    title: "Webサイト制作",
     description: "最新技術を活用した、高品質で効果的なWebサイトを制作します",
     features: [
       "企業サイト制作",
@@ -32,15 +20,27 @@ const services = [
   },
   {
     icon: <FiBarChart2 className="w-8 h-8" />,
-    title: "Excel業務効率化",
-    description: "煩雑な作業を自動化し、業務時間を大幅に削減します",
+    title: "業務自動化・効率化",
+    description: "GAS・スプレッドシートを活用し、業務時間を大幅に削減します",
     features: [
-      "マクロ・VBA開発",
-      "データ分析・集計",
-      "カスタム関数作成",
-      "帳票自動化",
+      "Google Apps Script開発",
+      "スプレッドシート自動化",
+      "Excel・データ分析・集計",
+      "業務フロー最適化",
     ],
     href: "/services/excel-automation",
+  },
+  {
+    icon: <FiMonitor className="w-8 h-8" />,
+    title: "パソコン・スマホサポート",
+    description: "ITトラブルを迅速に解決し、快適なデジタルライフをサポートします",
+    features: [
+      "パソコン・スマホの初期設定",
+      "トラブルシューティング",
+      "データ移行・バックアップ",
+      "セキュリティ対策",
+    ],
+    href: "/services/pc-support",
   },
 ];
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ContentSection } from "./ui";
 import { motion } from "framer-motion";
 import { FiCode, FiMonitor, FiAward, FiUsers } from "react-icons/fi";
@@ -8,6 +9,7 @@ export default function ProfileSection() {
   const skills = [
     { name: "JavaScript/TypeScript", level: 95 },
     { name: "React/Next.js", level: 90 },
+    { name: "Spreadsheet/GAS", level: 88 },
     { name: "Excel VBA", level: 85 },
     { name: "Python", level: 75 },
   ];
@@ -30,7 +32,7 @@ export default function ProfileSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-foreground mb-4">
-            パソコン講師のプロフィール
+            プロフィール
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             豊富な経験と確かな技術力で、お客様のIT課題を解決します
@@ -50,11 +52,11 @@ export default function ProfileSection() {
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-lg blur opacity-20"></div>
                 <div className="relative bg-card p-8 rounded-lg shadow-xl">
                   <h3 className="text-2xl font-semibold text-foreground mb-4">
-                    IT業界20年の実績
+                    IT業界15年以上の実績
                   </h3>
                   <p className="text-muted-foreground mb-6 leading-relaxed">
-                    システムエンジニアとして10年、Web制作会社で5年の経験を経て、
-                    2020年より独立。個人・法人向けにITサポートサービスを提供しています。
+                    IT業界で15年以上の経験を積み、システム開発からWeb制作まで幅広く対応。
+                    現在はパソコン教室を運営しながら、個人・法人向けにITサポートサービスを提供しています。
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
                     「テクノロジーを誰もが使いやすく」をモットーに、
@@ -131,12 +133,12 @@ export default function ProfileSection() {
                 <div className="absolute left-4 top-8 bottom-0 w-0.5 bg-border"></div>
                 
                 {[
-                  { year: "2020", title: "フリーランス独立", desc: "パソコン講師として活動開始" },
-                  { year: "2015", title: "Web制作会社", desc: "フロントエンドエンジニア" },
-                  { year: "2010", title: "IT企業入社", desc: "システムエンジニア" },
+                  { phase: "現在", title: "パソコン教室運営・ITコンサルタント", desc: "個人・法人向けITサポート、Web制作、業務自動化" },
+                  { phase: "技術拡張", title: "Web開発・自動化技術の習得と実践", desc: "React/Next.js、Google Apps Script等を継続学習" },
+                  { phase: "IT業界", title: "システムエンジニア", desc: "15年以上の実務経験、幅広いシステム開発に従事" },
                 ].map((item, index) => (
                   <motion.div
-                    key={item.year}
+                    key={item.phase}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -147,7 +149,7 @@ export default function ProfileSection() {
                       {index + 1}
                     </div>
                     <div className="flex-1">
-                      <div className="text-sm text-muted-foreground">{item.year}</div>
+                      <div className="text-sm text-primary font-medium">{item.phase}</div>
                       <div className="font-semibold text-foreground">{item.title}</div>
                       <div className="text-sm text-muted-foreground">{item.desc}</div>
                     </div>
@@ -168,9 +170,9 @@ export default function ProfileSection() {
         >
           <p className="text-muted-foreground">
             詳しいプロフィールは
-            <a href="/about" className="text-primary dark:text-primary-dark hover:underline mx-1">
+            <Link href="/profile" className="text-primary dark:text-primary-dark hover:underline mx-1">
               こちら
-            </a>
+            </Link>
             からご覧いただけます
           </p>
         </motion.div>
