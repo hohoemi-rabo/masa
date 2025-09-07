@@ -8,6 +8,13 @@ export default function WorksPage() {
       technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     },
     {
+      id: 5,
+      title: "企業サイト（WordPress）",
+      category: "Web制作",
+      description: "WordPress CMSを活用した企業サイト構築。管理しやすいコンテンツ管理システムを導入。",
+      technologies: ["WordPress", "Custom Theme", "SEO"],
+    },
+    {
       id: 2,
       title: "在庫管理システム",
       category: "Excel自動化",
@@ -15,11 +22,18 @@ export default function WorksPage() {
       technologies: ["Excel VBA", "Access"],
     },
     {
-      id: 3,
-      title: "ECサイト構築",
+      id: 6,
+      title: "営業データ集計システム",
+      category: "業務自動化",
+      description: "GAS・スプレッドシートで営業データの自動集計システムを構築。日次レポート作成を完全自動化。",
+      technologies: ["Google Apps Script", "Google Sheets", "Gmail API"],
+    },
+    {
+      id: 4,
+      title: "ブログ・メディアサイト",
       category: "Web制作",
-      description: "地域特産品のECサイトを構築。決済システムの導入から運用サポートまで対応。",
-      technologies: ["React", "Node.js", "Stripe"],
+      description: "WordPressを使用したブログサイトの構築。カスタムテーマ開発とSEO対策を実施。",
+      technologies: ["WordPress", "PHP", "MySQL"],
     },
   ];
 

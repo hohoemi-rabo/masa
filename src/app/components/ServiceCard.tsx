@@ -58,6 +58,7 @@ export default function ServiceCard({
         </ul>
         
         {/* CTA Link */}
+        {/* 将来実装予定 - 詳しく見るリンク
         <Link
           href={href}
           className="inline-flex items-center text-primary dark:text-primary-dark font-semibold hover:underline underline-offset-4 transition-all duration-300"
@@ -65,6 +66,7 @@ export default function ServiceCard({
           <span>詳しく見る</span>
           <FiArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
         </Link>
+        */}
       </div>
     </div>
   );
