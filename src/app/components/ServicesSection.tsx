@@ -108,20 +108,6 @@ export default function ServicesSection({ useScrollAnimation = false }: Services
           </motion.div>
         ))}
       </motion.div>
-      
-      {/* Additional info */}
-      <motion.div 
-        className="mt-16 text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={useScrollAnimation ? undefined : { opacity: 1, y: 0 }}
-        whileInView={useScrollAnimation ? { opacity: 1, y: 0 } : undefined}
-        viewport={useScrollAnimation ? { once: true, amount: 0.3 } : undefined}
-        transition={{ duration: 0.6, delay: useScrollAnimation ? 0 : 0.5, ease: "easeOut" }}
-      >
-        <p className="text-muted-foreground">
-          上記以外のご相談も承っております。お気軽にお問い合わせください。
-        </p>
-      </motion.div>
     </ContentSection>
   );
 }

@@ -81,8 +81,13 @@ export default function ContactPage() {
         </form>
 
         <div className="mt-8 text-center text-muted-foreground">
-          <p>お急ぎの場合は、お電話でもお問い合わせいただけます。</p>
-          <p className="mt-2">TEL: 000-0000-0000（平日 9:00-18:00）</p>
+          <p>お電話でのお問い合わせも承っております。お気軽にお電話ください。</p>
+          <p className="mt-2 font-semibold text-foreground">
+            <a href="tel:090-5646-560" className="hover:text-primary transition-colors">
+              TEL: 090-5646-560
+            </a>
+          </p>
+          <p className="text-sm">電話受付：随時対応可能</p>
         </div>
       </div>
     </div>

@@ -10,7 +10,6 @@ const navigation = [
   { name: "ホーム", href: "/" },
   { name: "サービス", href: "/services" },
   { name: "制作実績", href: "/works" },
-  { name: "ブログ", href: "/blog" },
   { name: "Instagram", href: "/instagram" },
   { name: "お問い合わせ", href: "/contact" },
 ];
