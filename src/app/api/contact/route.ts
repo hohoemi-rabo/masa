@@ -80,7 +80,7 @@ ${message}
     
     // 管理者宛てメール送信
     await resend.emails.send({
-      from: "お問い合わせフォーム <noreply@resend.dev>",
+      from: "お問い合わせフォーム <noreply@masa-olive.vercel.app>",
       to: process.env.CONTACT_EMAIL || "test@example.com",
       subject: `【お問い合わせ】${categoryLabel} - ${name}様`,
       html: adminEmailHtml,
@@ -88,7 +88,7 @@ ${message}
     
     // お客様宛て自動返信メール送信
     await resend.emails.send({
-      from: "加藤昌幸 <noreply@resend.dev>",
+      from: "加藤昌幸 <noreply@masa-olive.vercel.app>",
       to: email,
       subject: "お問い合わせを承りました",
       html: customerEmailHtml,

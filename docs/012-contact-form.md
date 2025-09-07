@@ -7,7 +7,7 @@ Resendを使用したお問い合わせフォームの実装。フォーム送�
 - [x] Resendのセットアップ
   - [x] Resendアカウント作成
   - [x] API キー取得
-  - [ ] ドメイン認証（任意）※独自ドメイン取得後に実施予定
+  - [x] ドメイン認証（masa-olive.vercel.app）
 - [x] 環境変数の設定
   - [x] RESEND_API_KEY
   - [x] CONTACT_EMAIL（受信用メールアドレス）
