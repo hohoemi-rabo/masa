@@ -17,23 +17,12 @@ Supabaseの初期設定とプロジェクトとの連携。
   - [ ] クライアント初期化
   - [ ] 型定義の生成
 - [ ] データベーススキーマ設計
-  - [ ] contactsテーブル（お問い合わせ）
   - [ ] blog_postsテーブル（ブログ記事）
   - [ ] worksテーブル（制作実績）
+  - [ ] ※お問い合わせはResendを使用してメール送信のため、contactsテーブルは不要
 
 ## スキーマ例
 ```sql
--- お問い合わせ
-CREATE TABLE contacts (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  name TEXT NOT NULL,
-  email TEXT NOT NULL,
-  phone TEXT,
-  category TEXT NOT NULL,
-  message TEXT NOT NULL,
-  created_at TIMESTAMP DEFAULT NOW()
-);
-
 -- ブログ記事
 CREATE TABLE blog_posts (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
