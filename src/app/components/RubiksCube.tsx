@@ -5,14 +5,14 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera, RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
 
-// ルービックキューブの色定義 - 青のグラデーション
+// ルービックキューブの色定義 - 銀色メタリック
 const CUBE_COLORS = {
-  front: "#0d47a1",  // ダークブルー
-  back: "#1565c0",   // ブルー
-  top: "#1976d2",    // ライトブルー
-  bottom: "#1e88e5", // ブライトブルー
-  right: "#2196f3",  // スカイブルー
-  left: "#42a5f5",   // ライトスカイブルー
+  front: "#e8e8e8",   // ライトシルバー
+  back: "#d0d0d0",    // シルバー
+  top: "#f5f5f5",     // ブライトシルバー
+  bottom: "#c8c8c8",  // ダークシルバー
+  right: "#e0e0e0",   // シルバーグレー
+  left: "#d8d8d8",    // ミディアムシルバー
 };
 
 // 個別のキューブピース
@@ -27,54 +27,54 @@ function CubePiece({ position }: { position: [number, number, number] }) {
     // Right face (x = 1)
     mats.push(
       new THREE.MeshStandardMaterial({
-        color: x === 1 ? CUBE_COLORS.right : "#0a1929",
-        metalness: 0.4,
-        roughness: 0.3,
+        color: x === 1 ? CUBE_COLORS.right : "#b0b0b0",
+        metalness: 0.9,
+        roughness: 0.1,
       })
     );
     
     // Left face (x = -1)
     mats.push(
       new THREE.MeshStandardMaterial({
-        color: x === -1 ? CUBE_COLORS.left : "#0a1929",
-        metalness: 0.4,
-        roughness: 0.3,
+        color: x === -1 ? CUBE_COLORS.left : "#b0b0b0",
+        metalness: 0.9,
+        roughness: 0.1,
       })
     );
     
     // Top face (y = 1)
     mats.push(
       new THREE.MeshStandardMaterial({
-        color: y === 1 ? CUBE_COLORS.top : "#0a1929",
-        metalness: 0.4,
-        roughness: 0.3,
+        color: y === 1 ? CUBE_COLORS.top : "#b0b0b0",
+        metalness: 0.9,
+        roughness: 0.1,
       })
     );
     
     // Bottom face (y = -1)
     mats.push(
       new THREE.MeshStandardMaterial({
-        color: y === -1 ? CUBE_COLORS.bottom : "#0a1929",
-        metalness: 0.4,
-        roughness: 0.3,
+        color: y === -1 ? CUBE_COLORS.bottom : "#b0b0b0",
+        metalness: 0.9,
+        roughness: 0.1,
       })
     );
     
     // Front face (z = 1)
     mats.push(
       new THREE.MeshStandardMaterial({
-        color: z === 1 ? CUBE_COLORS.front : "#0a1929",
-        metalness: 0.4,
-        roughness: 0.3,
+        color: z === 1 ? CUBE_COLORS.front : "#b0b0b0",
+        metalness: 0.9,
+        roughness: 0.1,
       })
     );
     
     // Back face (z = -1)
     mats.push(
       new THREE.MeshStandardMaterial({
-        color: z === -1 ? CUBE_COLORS.back : "#0a1929",
-        metalness: 0.4,
-        roughness: 0.3,
+        color: z === -1 ? CUBE_COLORS.back : "#b0b0b0",
+        metalness: 0.9,
+        roughness: 0.1,
       })
     );
     
@@ -162,29 +162,34 @@ export default function RubiksCube() {
           fov={36}
         />
         
-        {/* ライティング - 青のグラデーション */}
-        <ambientLight intensity={0.6} />
+        {/* ライティング - メタリック反射用 */}
+        <ambientLight intensity={0.3} />
         <directionalLight
           position={[10, 10, 5]}
-          intensity={1.2}
-          color="#2196f3"
+          intensity={2.0}
+          color="#ffffff"
           castShadow
-          shadow-mapSize={[1024, 1024]}
+          shadow-mapSize={[2048, 2048]}
         />
         <directionalLight 
           position={[-10, -10, -5]} 
-          intensity={0.6}
-          color="#1976d2"
+          intensity={1.0}
+          color="#f0f0f0"
         />
         <pointLight 
-          position={[0, 10, 0]} 
+          position={[0, 15, 0]} 
+          intensity={1.5}
+          color="#ffffff"
+        />
+        <pointLight 
+          position={[10, -5, 10]} 
           intensity={0.8}
-          color="#64b5f6"
+          color="#e0e0e0"
         />
         <pointLight 
-          position={[5, -5, 5]} 
-          intensity={0.5}
-          color="#42a5f5"
+          position={[-10, 5, -10]} 
+          intensity={0.6}
+          color="#f5f5f5"
         />
         
         {/* ルービックキューブ */}
