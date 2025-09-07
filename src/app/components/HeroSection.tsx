@@ -55,7 +55,7 @@ export default function HeroSection() {
               テクノロジーで
               <br />
               あなたの
-              <span className="text-primary dark:text-primary-dark">"困った"</span>
+              <span className="text-primary dark:text-primary-dark">&ldquo;困った&rdquo;</span>
               を解決します
             </motion.h1>
             
