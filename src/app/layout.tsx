@@ -18,6 +18,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "加藤昌幸 | ITコンサルタント・Webサイト制作",
   description: "パソコン・スマホのトラブル解決から、ホームページ制作、Excel業務効率化まで。AI時代の効率的なITソリューションを提供します。",
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
