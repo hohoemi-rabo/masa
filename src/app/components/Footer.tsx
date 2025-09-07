@@ -24,7 +24,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1">
-            <h3 className="text-lg font-bold text-primary dark:text-primary-dark mb-4">パソコン講師</h3>
+            <h3 className="text-lg font-bold text-primary dark:text-primary-dark mb-4">加藤昌幸</h3>
             <p className="text-sm text-muted-foreground">
               AI時代の効率的なITソリューションを提供します
             </p>
@@ -53,7 +53,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-border">
           <p className="text-center text-sm text-muted-foreground">
-            © {new Date().getFullYear()} パソコン講師. All rights reserved.
+            © {new Date().getFullYear()} Katoh Masayuki. All rights reserved.
           </p>
         </div>
       </div>
