@@ -61,22 +61,47 @@ export default function SwipeNavigation({
     delta: 50,         // 最小スワイプ距離
   });
 
+  // ページ名を取得する関数
+  const getPageName = (path: string) => {
+    const pageNames: { [key: string]: string } = {
+      '/': 'ホーム',
+      '/services': 'サービス',
+      '/works': '制作実績',
+      '/profile': 'プロフィール',
+      '/contact': 'お問い合わせ',
+      '/instagram': 'Instagram',
+    };
+    return pageNames[path] || 'ページ';
+  };
+
+  // 現在のページを取得
+  const getCurrentPage = () => {
+    if (typeof window !== 'undefined') {
+      return window.location.pathname;
+    }
+    return '';
+  };
+
   // スワイプインジケーター
   const SwipeIndicator = () => {
     if (!isMobile) return null;
     
     return (
       <div className="fixed bottom-20 left-0 right-0 flex justify-center items-center pointer-events-none z-40 md:hidden">
-        <div className="bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-3">
+        <div className="bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2">
           {prevPage && (
             <span className="text-white/70 text-sm">
-              ← 前のページ
+              ← {getPageName(prevPage)}
             </span>
           )}
-          <span className="text-white text-sm">スワイプで移動</span>
+          <span className="text-white/60 text-sm">|</span>
+          <span className="text-white font-semibold text-sm">
+            {getPageName(getCurrentPage())}
+          </span>
+          <span className="text-white/60 text-sm">|</span>
           {nextPage && (
             <span className="text-white/70 text-sm">
-              次のページ →
+              {getPageName(nextPage)} →
             </span>
           )}
         </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema, ContactFormData, contactCategories } from "../lib/validations/contact";
+import SwipeNavigation from "../components/SwipeNavigation";
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,7 +49,8 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen py-12">
+    <SwipeNavigation prevPage="/profile">
+      <div className="min-h-screen py-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-foreground mb-4">お問い合わせ</h1>
@@ -180,6 +182,7 @@ export default function ContactPage() {
           <p className="text-sm">電話受付：随時対応可能</p>
         </div>
       </div>
-    </div>
+      </div>
+    </SwipeNavigation>
   );
 }

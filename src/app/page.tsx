@@ -3,6 +3,7 @@ import HeroSection from "./components/HeroSection";
 import ServicesSectionWrapper from "./components/ServicesSectionWrapper";
 import ProfileSectionWrapper from "./components/ProfileSectionWrapper";
 import CTASection from "./components/CTASection";
+import SwipeNavigation from "./components/SwipeNavigation";
 
 // CTAセクションを遅延読み込み
 async function DelayedCTASection() {
@@ -28,7 +29,10 @@ function CTASkeleton() {
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <SwipeNavigation 
+      nextPage="/services"
+    >
+      <div className="min-h-screen">
       {/* Hero Section - 即座に表示 */}
       <HeroSection />
 
@@ -42,6 +46,7 @@ export default function Home() {
       <Suspense fallback={<CTASkeleton />}>
         <DelayedCTASection />
       </Suspense>
-    </div>
+      </div>
+    </SwipeNavigation>
   );
 }
