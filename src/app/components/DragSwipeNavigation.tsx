@@ -19,6 +19,8 @@ export default function DragSwipeNavigation({
   const [dragX, setDragX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [swipeDirection, setSwipeDirection] = useState<'horizontal' | 'vertical' | null>(null);
+  const [initialTouch, setInitialTouch] = useState<{ x: number; y: number } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   
   // モバイルデバイスの検出
@@ -33,25 +35,51 @@ export default function DragSwipeNavigation({
   }, []);
 
   const handlers = useSwipeable({
+    onSwipeStart: (eventData) => {
+      if (!isMobile) return;
+      
+      // スワイプ開始時の座標を記録
+      setInitialTouch({ x: eventData.initial[0], y: eventData.initial[1] });
+      setSwipeDirection(null);
+    },
     onSwiping: (eventData) => {
       if (!isMobile) return;
       
-      setIsDragging(true);
-      // ドラッグ量を制限（画面幅の80%まで）
-      const maxDrag = window.innerWidth * 0.8;
-      const currentDrag = Math.min(Math.max(eventData.deltaX, -maxDrag), maxDrag);
+      // 最初の15pxの動きで方向を判定
+      if (!swipeDirection && initialTouch) {
+        const deltaX = Math.abs(eventData.deltaX);
+        const deltaY = Math.abs(eventData.deltaY);
+        
+        if (deltaX > 15 || deltaY > 15) {
+          // 45度以上なら縦スクロール、それ以外は横スワイプ
+          if (deltaY > deltaX) {
+            setSwipeDirection('vertical');
+            return; // 縦スクロールの場合は何もしない
+          } else {
+            setSwipeDirection('horizontal');
+          }
+        }
+      }
       
-      // 前後のページがない方向へのドラッグを制限
-      if (!prevPage && currentDrag > 0) {
-        setDragX(currentDrag * 0.2); // 抵抗感を演出
-      } else if (!nextPage && currentDrag < 0) {
-        setDragX(currentDrag * 0.2); // 抵抗感を演出
-      } else {
-        setDragX(currentDrag);
+      // 横スワイプと判定された場合のみ処理
+      if (swipeDirection === 'horizontal') {
+        setIsDragging(true);
+        // ドラッグ量を制限（画面幅の80%まで）
+        const maxDrag = window.innerWidth * 0.8;
+        const currentDrag = Math.min(Math.max(eventData.deltaX, -maxDrag), maxDrag);
+        
+        // 前後のページがない方向へのドラッグを制限
+        if (!prevPage && currentDrag > 0) {
+          setDragX(currentDrag * 0.2); // 抵抗感を演出
+        } else if (!nextPage && currentDrag < 0) {
+          setDragX(currentDrag * 0.2); // 抵抗感を演出
+        } else {
+          setDragX(currentDrag);
+        }
       }
     },
     onSwipedLeft: () => {
-      if (!isMobile || !nextPage) {
+      if (!isMobile || !nextPage || swipeDirection !== 'horizontal') {
         resetDrag();
         return;
       }
@@ -64,7 +92,7 @@ export default function DragSwipeNavigation({
       }
     },
     onSwipedRight: () => {
-      if (!isMobile || !prevPage) {
+      if (!isMobile || !prevPage || swipeDirection !== 'horizontal') {
         resetDrag();
         return;
       }
@@ -77,7 +105,11 @@ export default function DragSwipeNavigation({
       }
     },
     onTouchEndOrOnMouseUp: () => {
-      if (!isDragging) return;
+      if (!isDragging || swipeDirection !== 'horizontal') {
+        setSwipeDirection(null);
+        setInitialTouch(null);
+        return;
+      }
       
       const threshold = window.innerWidth * 0.3;
       
@@ -93,8 +125,11 @@ export default function DragSwipeNavigation({
       } else {
         resetDrag();
       }
+      
+      setSwipeDirection(null);
+      setInitialTouch(null);
     },
-    preventScrollOnSwipe: true,
+    preventScrollOnSwipe: false, // 縦スクロールを邪魔しない
     trackMouse: false,
     trackTouch: true,
     delta: 10, // 感度を上げる
