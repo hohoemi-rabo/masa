@@ -56,7 +56,7 @@ export default function DragSwipeNavigation({
         return;
       }
       
-      const threshold = window.innerWidth * 0.5; // 50%以上で遷移
+      const threshold = window.innerWidth * 0.3; // 30%以上で遷移
       if (Math.abs(dragX) > threshold) {
         animateAndNavigate('left');
       } else {
@@ -69,7 +69,7 @@ export default function DragSwipeNavigation({
         return;
       }
       
-      const threshold = window.innerWidth * 0.5; // 50%以上で遷移
+      const threshold = window.innerWidth * 0.3; // 30%以上で遷移
       if (Math.abs(dragX) > threshold) {
         animateAndNavigate('right');
       } else {
@@ -79,7 +79,7 @@ export default function DragSwipeNavigation({
     onTouchEndOrOnMouseUp: () => {
       if (!isDragging) return;
       
-      const threshold = window.innerWidth * 0.5;
+      const threshold = window.innerWidth * 0.3;
       
       // ドラッグ量がしきい値を超えていたら遷移
       if (Math.abs(dragX) > threshold) {
