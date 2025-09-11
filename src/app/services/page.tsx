@@ -1,11 +1,11 @@
 import ServicesSection from "../components/ServicesSection";
 import { HeroSection } from "../components/ui";
 import CTASection from "../components/CTASection";
-import SwipeNavigation from "../components/SwipeNavigation";
+import DragSwipeNavigation from "../components/DragSwipeNavigation";
 
 export default function ServicesPage() {
   return (
-    <SwipeNavigation 
+    <DragSwipeNavigation 
       prevPage="/" 
       nextPage="/works"
     >
@@ -25,6 +25,6 @@ export default function ServicesPage() {
         
         <CTASection />
       </div>
-    </SwipeNavigation>
+    </DragSwipeNavigation>
   );
 }
