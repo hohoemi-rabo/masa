@@ -206,8 +206,13 @@ export default function DragSwipeNavigation({
   return (
     <div className="relative min-h-screen overflow-hidden">
       <div 
-        ref={containerRef}
         {...handlers} 
+        ref={(el) => {
+          containerRef.current = el;
+          if (handlers.ref) {
+            handlers.ref(el);
+          }
+        }}
         className="min-h-screen"
         style={{
           transform: `translateX(${dragX}px)`,
