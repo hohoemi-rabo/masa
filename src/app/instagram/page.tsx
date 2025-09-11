@@ -6,7 +6,7 @@ import { FiHeart, FiMessageCircle } from "react-icons/fi";
 import ViewTransitionLink from "../components/ViewTransitionLink";
 import { posts } from "./posts-data";
 import CTASection from "../components/CTASection";
-import SwipeNavigation from "../components/SwipeNavigation";
+import DragSwipeNavigation from "../components/DragSwipeNavigation";
 
 export default function InstagramPage() {
   // postsデータをposts-data.tsからインポート
@@ -33,7 +33,7 @@ export default function InstagramPage() {
   };
 
   return (
-    <SwipeNavigation>
+    <DragSwipeNavigation prevPage="/works" nextPage="/profile">
       <div className="min-h-screen bg-background py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -158,6 +158,6 @@ export default function InstagramPage() {
         <CTASection />
       </div>
       </div>
-    </SwipeNavigation>
+    </DragSwipeNavigation>
   );
 }
