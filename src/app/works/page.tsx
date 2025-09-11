@@ -1,5 +1,5 @@
 import CTASection from "../components/CTASection";
-import SwipeNavigation from "../components/SwipeNavigation";
+import DragSwipeNavigation from "../components/DragSwipeNavigation";
 
 export default function WorksPage() {
   const works = [
@@ -41,7 +41,7 @@ export default function WorksPage() {
   ];
 
   return (
-    <SwipeNavigation prevPage="/services" nextPage="/profile">
+    <DragSwipeNavigation prevPage="/services" nextPage="/profile">
       <div className="min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
@@ -76,6 +76,6 @@ export default function WorksPage() {
         <CTASection />
       </div>
       </div>
-    </SwipeNavigation>
+    </DragSwipeNavigation>
   );
 }
